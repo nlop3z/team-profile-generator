@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./src/index.css">
+    <title>My Team</title>
+</head>
+<body>
+    <main>
+        <nav>
+            <h1>My Team</h1>
+        </nav>
+
+        <body>
+            <div class="container">
+                <div class="card">
+                    <div class="card-head">
+                        <h3>${managerName}</h3>
+                        <h4>Role: ${getRole()}</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li>ID: ${employeeId}</li>
+                            <li>Email: <a href="mailto: ${managerEmailAddress}" target="none">${managerEmailAddress}</a></li>
+                            <li>Office number: ${officeNumber}</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-head">
+                        <h3>${managerName}</h3>
+                        <h4>Role: ${getRole()}</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li>ID: ${employeeId}</li>
+                            <li>Email: <a href="mailto: ${managerEmailAddress}" target="none">${managerEmailAddress}</a></li>
+                            <li>Office number: ${officeNumber}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </body>
+    </main>
+</body>
+</html>
