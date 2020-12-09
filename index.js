@@ -3,7 +3,8 @@ const Engineer = require('./lib/Engineer');
 const Employee = require('./lib/Employee');
 const Intern = require('./lib/Intern');
 const Manager = require('./lib/Manager');
-const inquirer = require('inquirer'); 
+const inquirer = require('inquirer');
+const card = require('./src/cards'); 
 
 const employees =[];
 
@@ -11,7 +12,7 @@ const profileQuestions = {
     manager: [
         {
             type: 'input',
-            name: 'managerName',
+            name: 'name',
             message: 'What is the team manager name? \n',
             validate: nameInput => {
                 if (nameInput) {
@@ -25,7 +26,7 @@ const profileQuestions = {
         
         {
             type: 'number',
-            name: 'managerId',
+            name: 'id',
             message: "What is the employee's ID number? \n",
             validate: idInput => {
                 if (idInput) {
@@ -39,7 +40,7 @@ const profileQuestions = {
 
         {
             type: 'input',
-            name: 'managerEmail',
+            name: 'email',
             message: "What is the employees's email address? \n",
             validate: emailInput => {
                 if (emailInput.includes('@') && emailInput.includes('.com')) {
@@ -66,7 +67,7 @@ const profileQuestions = {
     intern: [
         {
             type:'input',
-            name: 'internName',
+            name: 'name',
             message: "What is the name of the employee? \n",
             validate: nameInput => {
                 if (nameInput) {
@@ -79,7 +80,7 @@ const profileQuestions = {
 
         {
             type: 'number',
-            name: 'internId',
+            name: 'id',
             message: "What is the employee's ID number? \n",
             validate: idInput => {
                 if (idInput) {
@@ -92,7 +93,7 @@ const profileQuestions = {
         },
         {
             type: 'input',
-            name: 'internEmail',
+            name: 'email',
             message: "What is the intern's email address? \n",
             validate: emailInput => {
                 if (emailInput.includes('@') && emailInput.includes('.com')) {
@@ -105,7 +106,7 @@ const profileQuestions = {
         },
         {
             type: 'input',
-            name: 'internSchool',
+            name: 'schoolName',
             message: "\n What school does the intern attend?",
             validate: function (value) {
                 if (value) {
@@ -120,7 +121,7 @@ const profileQuestions = {
     engineer: [
         {        
             type:'input',
-            name: 'engineerName',
+            name: 'name',
             message: "What is the employee's name? \n",
             validate: nameInput => {
                 if (nameInput) {
@@ -133,7 +134,7 @@ const profileQuestions = {
 
         {
             type: 'number',
-            name: 'engineerId',
+            name: 'id',
             message: "What is the employees's ID number? \n",
             validate: idInput => {
                 if (idInput) {
@@ -146,7 +147,7 @@ const profileQuestions = {
         },
         {
             type: 'input',
-            name: 'engineerEmail',
+            name: 'email',
             message: "What is the engineers's email address? \n",
             validate: emailInput => {
                 if (emailInput.includes('@') && emailInput.includes('.com')) {
@@ -159,7 +160,7 @@ const profileQuestions = {
         },
         {
             type: 'input',
-            name: 'engineerGithub',
+            name: 'github',
             message: "\n What is the engineer's GitHub username?",
             validate: function (value) {
                 if (value) {
@@ -174,7 +175,7 @@ const profileQuestions = {
 
 const addManager = () => {
     return inquirer
-        .prompt(questions.manager)
+        .prompt(profileQuestions.manager)
         .then(answers => {
             const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
             employees.push(manager);
@@ -184,7 +185,7 @@ const addManager = () => {
 
 const addEngineer = () => {
     return inquirer
-        .prompt(questions.engineer)
+        .prompt(profileQuestions.engineer)
         .then(answers => {
             const engineer = new Engineer(answers.name, answers.id, answers.email, answers.github);
             employees.push(engineer);
@@ -194,7 +195,7 @@ const addEngineer = () => {
 
 const addIntern = () => {
     return inquirer
-        .prompt(questions.intern)
+        .prompt(profileQuestions.intern)
         .then(answers => {
             const intern = new Intern(answers.name, answers.id, answers.email, answers.schoolName);
             employees.push(intern);
@@ -225,11 +226,11 @@ const addEmployee = () => {
         });
 };
 const createProfile = (fileName) => {
-    fileName = fs.writeFile('./dist/team.html', generateCard(employees), (err => {
+    fileName = fs.writeFile('./dist/team.html', card(employees), (err => {
         if (err) {
             console.log('Error:' + err);
         } else {
-            console.log('Team Profile Created');
+            console.log('Team Profile Complete');
         }
     }));
 };
